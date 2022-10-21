@@ -3,6 +3,11 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const mongoose = require("mongoose");
+
+mongoose.connect("mongodb://127.0.0.1/book-store", (err) => {
+  console.log(err ? err : "database true");
+});
 
 const v1bookRouter = require("./routes/book_v1");
 const v2bookRouter = require("./routes/book_v2");
