@@ -4,8 +4,9 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
-const v1Router = require("./routes/v1Router");
-const v2Router = require("./routes/v2Router");
+const v1bookRouter = require("./routes/book_v1");
+const v2bookRouter = require("./routes/book_v2");
+const v2commentRouter = require("./routes/comments_v2");
 
 const app = express();
 
@@ -15,8 +16,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/api/v1/books", v1Router);
-app.use("/api/v2/books", v2Router);
+app.use("/api/v1/books", v1bookRouter);
+app.use("/api/v2/books", v2bookRouter);
+app.use("/api/v2/comments", v2commentRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
